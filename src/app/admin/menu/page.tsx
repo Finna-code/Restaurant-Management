@@ -306,8 +306,8 @@ export default function AdminMenuPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {!isLoading && filteredItems.length > 0 ? filteredItems.map(item => (
-                <TableRow key={item.id}>
+              {!isLoading && filteredItems.length > 0 ? filteredItems.map((item, index) => (
+                <TableRow key={item.id || `fallback-${index}`}>
                   <TableCell className="font-medium">{item.name}</TableCell>
                   <TableCell>{item.category}</TableCell>
                   <TableCell className="text-right">{formatInr(item.price)}</TableCell>

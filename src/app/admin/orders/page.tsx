@@ -73,18 +73,13 @@ function AdminOrdersPageSkeleton() {
             </TableHeader>
             <TableBody>
               {Array(5).fill(0).map((_, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  <TableCell><Skeleton className="h-5 w-16" /></TableCell>
-                  <TableCell><Skeleton className="h-5 w-24 mb-1" /><Skeleton className="h-3 w-20" /></TableCell>
-                  <TableCell><Skeleton className="h-5 w-28" /></TableCell>
-                  <TableCell className="text-right"><Skeleton className="h-5 w-12 ml-auto" /></TableCell>
-                  <TableCell><Skeleton className="h-8 w-full max-w-[150px] rounded-md" /></TableCell> {/* Max width for status skeleton cell content */}
-                  <TableCell className="text-right space-x-1">
-                    <Skeleton className="h-8 w-8 inline-block" />
-                    <Skeleton className="h-8 w-8 inline-block" />
-                    <Skeleton className="h-8 w-8 inline-block" />
-                  </TableCell>
-                </TableRow>
+                <TableRow key={rowIndex}><TableCell><Skeleton className="h-5 w-16"/></TableCell><TableCell>
+                  <Skeleton className="h-5 w-24 mb-1"/><Skeleton className="h-3 w-20"/>
+                </TableCell><TableCell><Skeleton className="h-5 w-28"/></TableCell><TableCell className="text-right">
+                  <Skeleton className="h-5 w-12 ml-auto"/>
+                </TableCell><TableCell><Skeleton className="h-8 w-full max-w-[150px] rounded-md"/></TableCell><TableCell className="text-right space-x-1">
+                  <Skeleton className="h-8 w-8 inline-block"/><Skeleton className="h-8 w-8 inline-block"/><Skeleton className="h-8 w-8 inline-block"/>
+                </TableCell></TableRow>
               ))}
             </TableBody>
           </Table>
@@ -385,63 +380,68 @@ export default function AdminOrdersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {!isLoading && filteredOrders.length > 0 ? filteredOrders.map(order => (
-                <TableRow key={order.id}>
-                  <TableCell className="font-medium">{order.orderNumber}</TableCell>
-                  <TableCell>
-                    <div>{order.customerName}</div>
-                    <div className="text-xs text-muted-foreground">{order.customerContact}</div>
-                  </TableCell>
-                  <TableCell>{format(new Date(order.createdAt), "MMM d, yyyy HH:mm")}</TableCell>
-                  <TableCell className="text-right">{formatInr(order.totalAmount)}</TableCell>
-                  <TableCell>
-                    <Select value={order.status} onValueChange={(newStatus) => handleOrderStatusChange(order.id, newStatus as OrderStatus)} disabled={isSubmitting}>
-                      <SelectTrigger className="h-8 text-xs w-[150px]">
-                        <SelectValue>
-                          <Badge variant={getStatusBadgeVariant(order.status)} className={`text-xs ${getStatusBadgeClassName(order.status)}`}>{order.status}</Badge>
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {ORDER_STATUSES.map(s => (
-                          <SelectItem key={s} value={s} className="text-xs">{s}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell className="text-right space-x-1">
-                    <Button variant="ghost" size="icon" onClick={() => setViewingOrder(order)} disabled={isSubmitting}><Eye className="h-4 w-4" /></Button>
-                    <Button variant="ghost" size="icon" onClick={() => handleEditOrder(order)} disabled={isSubmitting || availableMenuItems.length === 0}><Edit className="h-4 w-4" /></Button>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={() => setOrderToDelete(order)} className="text-destructive hover:text-destructive/90" disabled={isSubmitting}>
-                           <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                       <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete order "{orderToDelete?.orderNumber}".
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel onClick={() => setOrderToDelete(null)}>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleDeleteOrderConfirm} className="bg-destructive hover:bg-destructive/90">Delete</AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </TableCell>
-                </TableRow>
-              )) : (
-                 !isLoading && (
-                  <TableRow>
-                    <TableCell colSpan={6} className="text-center h-24">
-                      {searchTerm || statusFilter !== 'all' ? 'No orders match your criteria.' : (error ? `Error fetching orders: ${error}` : 'No orders found. Create one to get started!')}
+              {!isLoading && filteredOrders.length > 0 ? (
+                filteredOrders.map(order => (
+                  <TableRow key={order.id}>
+                    <TableCell className="font-medium">{order.orderNumber}</TableCell>
+                    <TableCell>
+                      <div>{order.customerName}</div>
+                      <div className="text-xs text-muted-foreground">{order.customerContact}</div>
+                    </TableCell>
+                    <TableCell>{format(new Date(order.createdAt), "MMM d, yyyy HH:mm")}</TableCell>
+                    <TableCell className="text-right">{formatInr(order.totalAmount)}</TableCell>
+                    <TableCell>
+                      <Select value={order.status} onValueChange={(newStatus) => handleOrderStatusChange(order.id, newStatus as OrderStatus)} disabled={isSubmitting}>
+                        <SelectTrigger className="h-8 text-xs w-[150px]">
+                          <SelectValue>
+                            <Badge variant={getStatusBadgeVariant(order.status)} className={`text-xs ${getStatusBadgeClassName(order.status)}`}>
+                              {order.status}
+                            </Badge>
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {ORDER_STATUSES.map(s => (
+                            <SelectItem key={s} value={s} className="text-xs">{s}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </TableCell>
+                    <TableCell className="text-right space-x-1">
+                      <Button variant="ghost" size="icon" onClick={() => setViewingOrder(order)} disabled={isSubmitting}><Eye className="h-4 w-4" /></Button>
+                      <Button variant="ghost" size="icon" onClick={() => handleEditOrder(order)} disabled={isSubmitting || availableMenuItems.length === 0}><Edit className="h-4 w-4" /></Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="ghost" size="icon" onClick={() => setOrderToDelete(order)} className="text-destructive hover:text-destructive/90" disabled={isSubmitting}>
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. This will permanently delete order "{orderToDelete?.orderNumber}".
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel onClick={() => setOrderToDelete(null)}>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDeleteOrderConfirm} className="bg-destructive hover:bg-destructive/90">Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </TableCell>
                   </TableRow>
-                )
-              )}
+                ))
+              ) : (!isLoading ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center h-24">
+                    {searchTerm || statusFilter !== 'all' 
+                      ? 'No orders match your criteria.' 
+                      : (error ? `Error fetching orders: ${error}` : 'No orders found. Create one to get started!')}
+                  </TableCell>
+                </TableRow>
+              ) : null)}
             </TableBody>
+
           </Table>
         </CardContent>
       </Card>
@@ -492,5 +492,3 @@ export default function AdminOrdersPage() {
   );
 }
 
-    
-    

@@ -265,8 +265,8 @@ export default function MenuPage() {
 
           {!isLoading && paginatedItems.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedItems.map(item => (
-                <MenuItemCard key={item.id} item={item} />
+              {paginatedItems.map((item, index) => (
+                <MenuItemCard key={item.id || `fallback-menu-${index}`} item={item} />
               ))}
             </div>
           )}

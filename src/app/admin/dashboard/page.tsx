@@ -67,11 +67,11 @@ function AdminDashboardSkeleton() {
     <div className="space-y-8 p-1 animate-fade-in">
       <Skeleton className="h-9 w-1/3" /> {/* Page Title Skeleton */}
 
-      <section className="grid gap-6 md:grid-cols-1">
+      <section className="grid gap-6 md:grid-cols-1"> {/* This section wraps AI Insights */}
          <AiInsightsSkeleton />
       </section>
 
-      <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"> {/* This section wraps KPI Cards */}
         {Array(4).fill(0).map((_, index) => <KPICardSkeleton key={index} />)}
       </section>
 
@@ -84,7 +84,6 @@ function AdminDashboardSkeleton() {
         <ChartCardSkeleton /> {/* For Category Revenue */}
         <ChartCardSkeleton height={350} /> {/* For Peak Ordering Hours */}
       </section>
-
     </div>
   );
 }
@@ -447,5 +446,7 @@ export default function AdminDashboardPage() {
   );
 }
 
+
+    
 
     

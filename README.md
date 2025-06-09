@@ -89,7 +89,7 @@ Make sure you have Node.js (v18 or higher recommended) and npm installed. A runn
 1.  **Clone the Repository (or use your downloaded files):**
     If you have the project files from a Git repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/Finna-code/Restaurant-Management
     cd eatkwik-project-directory
     ```
     If you've downloaded the files, navigate to the project's root directory in your terminal.

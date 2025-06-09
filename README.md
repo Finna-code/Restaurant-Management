@@ -5,7 +5,7 @@ EatKwik is a modern, full-stack web application designed to streamline restauran
 
 ## Tech Stack
 
-EatKwik is built with a robust and modern technology stack:
+The app is built with a robust and modern technology stack:
 
 *   **Next.js (App Router):** Leveraged for its powerful features including Server Components, optimized routing, and server-side rendering capabilities, providing a fast and scalable foundation. The App Router handles both frontend rendering and backend API routes.
 *   **React & TypeScript:** React is used for building dynamic and interactive user interfaces, while TypeScript ensures type safety, code quality, and improved maintainability across the project.

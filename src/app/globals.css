@@ -1,0 +1,121 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-body), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline), serif;
+}
+
+@layer base {
+  :root {
+    --background: 30 10% 10%; /* Dark Grey/Brown */
+    --foreground: 0 80% 70%; /* Coral Text */
+
+    --card: 30 10% 15%; /* Slightly Lighter Dark */
+    --card-foreground: 0 80% 70%; /* Coral Text */
+
+    --popover: 30 10% 15%;
+    --popover-foreground: 0 80% 70%;
+
+    --primary: 0 85% 65%; /* Brighter Coral for primary actions */
+    --primary-foreground: 0 0% 10%; /* Dark text on primary */
+
+    --secondary: 220 15% 30%; /* Muted Blue/Grey */
+    --secondary-foreground: 0 0% 90%; /* Light text on secondary */
+
+    --muted: 30 10% 25%;
+    --muted-foreground: 60 30% 70%; /* Lighter Grey */
+
+    --accent: 25 73% 55%; /* Muted Orange, slightly brighter */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+
+    --destructive: 0 70% 55%; /* Red, slightly brighter */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 30%;
+    --input: 30 10% 20%;
+    --ring: 0 85% 65%; /* Primary coral for ring */
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 30 10% 12%;
+    --sidebar-foreground: 0 80% 70%; /* Coral Text */
+    --sidebar-primary: 0 85% 60%; /* Coral for sidebar active items */
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 25 73% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 30 10% 25%;
+    --sidebar-ring: 0 85% 65%;
+
+    --chart-1: 0 85% 65%; /* Primary Coral */
+    --chart-2: 25 73% 55%; /* Accent Orange */
+    --chart-3: 180 50% 65%; /* Teal */
+    --chart-4: 45 80% 65%; /* Yellow */
+    --chart-5: 300 60% 75%; /* Purple */
+    --chart-bar-hover: 0 85% 72%; /* Brighter Coral for bar hover */
+  }
+
+  .dark {
+    /* Ensuring .dark class reflects the same dark theme values */
+    --background: 30 10% 10%;
+    --foreground: 0 80% 70%;
+
+    --card: 30 10% 15%;
+    --card-foreground: 0 80% 70%;
+
+    --popover: 30 10% 15%;
+    --popover-foreground: 0 80% 70%;
+
+    --primary: 0 85% 65%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 220 15% 30%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 30 10% 25%;
+    --muted-foreground: 60 30% 70%;
+
+    --accent: 25 73% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 30%;
+    --input: 30 10% 20%;
+    --ring: 0 85% 65%;
+
+    /* Sidebar specific colors for dark theme */
+    --sidebar-background: 30 10% 12%;
+    --sidebar-foreground: 0 80% 70%;
+    --sidebar-primary: 0 85% 60%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 25 73% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 30 10% 25%;
+    --sidebar-ring: 0 85% 65%;
+
+    --chart-1: 0 85% 65%;
+    --chart-2: 25 73% 55%;
+    --chart-3: 180 50% 65%;
+    --chart-4: 45 80% 65%;
+    --chart-5: 300 60% 75%;
+    --chart-bar-hover: 0 85% 72%; /* Brighter Coral for bar hover */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    @apply antialiased;
+  }
+}
